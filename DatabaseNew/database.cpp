@@ -97,6 +97,7 @@ namespace coen79_lab7
         
         size_type company_index = search_company(company);
         
+        list_clear(company_index);
         // COMPLETE THE IMPLEMENTATION...
     }
     
