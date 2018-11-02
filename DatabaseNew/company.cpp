@@ -38,6 +38,7 @@ namespace coen79_lab7
         head_ptr = src.head_ptr;
         tail_ptr = tmp_tail;
         company_name = src.company_name;
+        return;
     }
 
     
@@ -117,7 +118,9 @@ namespace coen79_lab7
         if(found == NULL){
             return false;
         }
-        
+        found->setName(head_ptr->getName());
+        found->setPrice(head_ptr->getPrice());
+        list_head_remove(head_ptr);
         return true;
     }
     
