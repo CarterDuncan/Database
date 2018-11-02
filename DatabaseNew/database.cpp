@@ -96,9 +96,14 @@ namespace coen79_lab7
     bool database::erase_company(const std::string &company) {
         
         size_type company_index = search_company(company);
-        
-        list_clear(company_index);
-        // COMPLETE THE IMPLEMENTATION...
+        if(company_index >= used_slots)
+            return false;
+        else{
+            for(size_type i = company_index;i<used_slots-1;i++)
+                company_array[company_index]=company_array[company_index+1];
+            used_slots--;
+            return true;
+        }
     }
     
     
@@ -106,6 +111,7 @@ namespace coen79_lab7
         
         assert(cName.length() > 0 && pName.length() > 0);
 
+        
         // COMPLETE THE IMPLEMENTATION...
     }
     
