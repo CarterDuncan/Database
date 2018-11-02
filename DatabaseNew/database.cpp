@@ -43,13 +43,20 @@ namespace coen79_lab7
     
     database& database::operator= (const database &rhs) {
         Debug("Assignment operator..." << std::endl);
-
+        if(this == &rhs){
+            return *this;
+        }
         // COMPLETE THE IMPLEMENTATION...
     }
     
     
     database::~database() {
-        // COMPLETE THE IMPLEMENTATION...
+        node* current;
+        for(size_type i = 0; i < used_slots; i++){
+            current = company_array[i];
+        }
+        aloc_slots = 0;
+        used_slots = 0;
     }
     
     
@@ -86,6 +93,7 @@ namespace coen79_lab7
             return false;
         }
 
+        return true;
         // COMPLETE THE IMPLEMENTATION...
     }
     
@@ -103,11 +111,13 @@ namespace coen79_lab7
     bool database::erase_company(const std::string &company) {
         
         size_type company_index = search_company(company);
-        if(company_index >= used_slots)
+        if(company_index >= used_slots){
             return false;
+        }
         else{
-            for(size_type i = company_index;i<used_slots-1;i++)
+            for(size_type i = company_index;i<used_slots-1;i++){
                 company_array[company_index]=company_array[company_index+1];
+            }
             used_slots--;
             return true;
         }
