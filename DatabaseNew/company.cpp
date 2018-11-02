@@ -23,21 +23,38 @@ namespace coen79_lab7
     
     company::company(const std::string& company_name) {
         assert(company_name.length() > 0);
-
-        // COMPLETE THE IMPLEMENTATION...
+        this->company_name = company_name;
+        this->head_ptr = NULL;
+        this->tail_ptr = NULL;
     }
     
     company::company(const company &src) {
         Debug("Company copy constructor..." << std::endl);
-
-        // COMPLETE THE IMPLEMENTATION...
+        head_ptr = NULL;
+        tail_ptr = NULL;
+        company_name = "";
+        node* tmp_tail;
+        list_copy(src.head_ptr, head_ptr, tmp_tail);
+        head_ptr = src.head_ptr;
+        tail_ptr = tmp_tail;
+        company_name = src.company_name;
     }
 
     
     company& company::operator= (const company &src) {
         Debug("Company assignemnt operator..." << std::endl);
-
-        // COMPLETE THE IMPLEMENTATION...
+        if(this == &src){
+            return *this;
+        }
+        while(head_ptr != NULL){
+            node* tmp = head_ptr;
+            head_ptr = head_ptr->getLink();
+            delete tmp;
+        }
+        node* tmp_tail;
+        list_copy(src.head_ptr, head_ptr, tmp_tail);
+        company_name = src.company_name;
+        return *this;
     }
     
     
@@ -80,10 +97,12 @@ namespace coen79_lab7
         }
         
         if (head_ptr == NULL) {
-            // COMPLETE THE IMPLEMENTATION...
+            node* tmp = new node(product_name, price, NULL);
+            head_ptr = tmp;
+            tail_ptr = tmp;
         }
         else {
-            // COMPLETE THE IMPLEMENTATION...
+            list_tail_insert(tail_ptr, product_name, price);
         }
         
         return true;
@@ -93,7 +112,13 @@ namespace coen79_lab7
     bool company::erase(const std::string& product_name) {
         assert(product_name.length() > 0);
 
-        // COMPLETE THE IMPLEMENTATION...
+        node* found = NULL;
+        found = list_search(head_ptr, product_name);
+        if(found == NULL){
+            return false;
+        }
+        
+        return true;
     }
     
     
