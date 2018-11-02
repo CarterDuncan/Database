@@ -56,13 +56,20 @@ namespace coen79_lab7
     void database::reserve(size_type new_capacity) {
         Debug("Reserve..." << std::endl);
 
-        if (new_capacity == aloc_slots)
+        if (new_capacity == aloc_slots){
             return; // The allocated memory is already the right size.
-        
-        if (new_capacity < used_slots)
+        }
+        if (new_capacity < used_slots){
             new_capacity = used_slots; // Canít allocate less than we are using.
-        
-        // COMPLETE THE IMPLEMENTATION...
+        }
+        company* new_company = new company[new_capacity];
+        for(size_type i = 0; i < used_slots; i++){
+            std::copy(company_array, company_array + used_slots, new_company);
+        }
+        delete[] company_array;
+        company_array = new_company;
+        aloc_slots = new_capacity;
+        return;
     }
     
     
