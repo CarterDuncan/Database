@@ -36,8 +36,10 @@ namespace coen79_lab7
     
     database::database(const database &src) {
         Debug("Copy constructor..." << std::endl);
-
-        // COMPLETE THE IMPLEMENTATION...
+        used_slots = src.used_slots;
+        aloc_slots = src.aloc_slots;
+        company_array = new company[aloc_slots];
+        *company_array = *src.company_array;
     }
     
     
@@ -46,15 +48,17 @@ namespace coen79_lab7
         if(this == &rhs){
             return *this;
         }
-        // COMPLETE THE IMPLEMENTATION...
+        database *temp = new database(rhs);
+        return *temp;
     }
     
     
     database::~database() {
-        node* current;
+        /*node* current;
         for(size_type i = 0; i < used_slots; i++){
             current = company_array[i];
-        }
+        }*/
+        delete company_array;
         aloc_slots = 0;
         used_slots = 0;
     }
@@ -136,8 +140,17 @@ namespace coen79_lab7
     
     database::size_type database::search_company(const std::string& company) {
         assert(company.length() > 0);
-
-        // COMPLETE THE IMPLEMENTATION...
+        size_type position = -1;
+        for(size_type i = 0; i < used_slots; i++){
+            if(company_array[i].get_name() == company){
+                position = i;
+            }
+        }
+        if(position == -1){
+            std::cout << "COMPANY_NOT_FOUND" << std::endl;
+            return -1;
+        }
+        return position;
     }
     
     
@@ -159,7 +172,6 @@ namespace coen79_lab7
     
     
     void database::print_companies() {
-        
         std::cout << "Company List" << std::endl;
         for (int i = 0; i < used_slots; i++) {
             std::cout << "- " << company_array[i].get_name() << std::endl;
