@@ -58,7 +58,7 @@ namespace coen79_lab7
         for(size_type i = 0; i < used_slots; i++){
             current = company_array[i];
         }*/
-        delete company_array;
+        delete [] company_array;
         aloc_slots = 0;
         used_slots = 0;
     }
