@@ -105,7 +105,6 @@ namespace coen79_lab7
         else {
             list_tail_insert(tail_ptr, product_name, price);
         }
-        
         return true;
     }
 
