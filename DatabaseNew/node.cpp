@@ -48,7 +48,7 @@ namespace coen79_lab7
     
     
     void list_tail_insert(node*& tail, const std::string &newName, const float &newPrice) {
-        node* tmp = new node(newName,newPrice,NULL);
+        node* tmp = new node(newName,newPrice);
         tail->setLink(tmp);
         tail = tail->getLink();
     }

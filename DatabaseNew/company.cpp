@@ -98,9 +98,7 @@ namespace coen79_lab7
         }
         
         if (head_ptr == NULL) {
-            node* tmp = new node(product_name, price, NULL);
-            head_ptr = tmp;
-            tail_ptr = tmp;
+            list_init(head_ptr, tail_ptr, product_name, price);
         }
         else {
             list_tail_insert(tail_ptr, product_name, price);
