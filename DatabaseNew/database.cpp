@@ -92,13 +92,14 @@ namespace coen79_lab7
         
         size_type pos = search_company(entry);
         
-        // If you find a company that is false, because there are duplicates
         if (pos != COMPANY_NOT_FOUND) {
             return false;
         }
-
-        return true;
-        // COMPLETE THE IMPLEMENTATION...
+        else{
+            company_array[used_slots]=entry;
+            used_slots++;
+            return true;
+        }
     }
     
     
@@ -107,8 +108,14 @@ namespace coen79_lab7
 
         assert(company.length() > 0 && product_name.length() > 0);
 
-        // COMPLETE THE IMPLEMENTATION...
-        
+        if (search_company(company) == true)
+            return false;
+        else{
+            size_type pos = search_company(compnay);
+            company_array[pos].company_array[used_slots] = product_name;
+            used_slots++;
+            return true=;
+        }
     }
     
     
@@ -129,14 +136,17 @@ namespace coen79_lab7
     
     
     bool database::erase_item(const std::string& cName, const std::string& pName) {
-        
         assert(cName.length() > 0 && pName.length() > 0);
-
-        
-        // COMPLETE THE IMPLEMENTATION...
+        size_type pos = search_company(cName);
+        if (search_company(cName) == COMPANY_NOT_FOUND)
+            return false;
+        else{
+            for(size_type i = pos; i<company_array.length()-1;i++){
+                company_array[i] = company_array[i+1];
+            }
+            return true;
+        }
     }
-    
-    
     
     database::size_type database::search_company(const std::string& company) {
         assert(company.length() > 0);
@@ -175,6 +185,17 @@ namespace coen79_lab7
         std::cout << "Company List" << std::endl;
         for (int i = 0; i < used_slots; i++) {
             std::cout << "- " << company_array[i].get_name() << std::endl;
+        }
+    }
+    
+    size_type search_company(const std::string& company_name){
+        assert(company_name.length > 0);
+        for(int i = 0; i < used_slots; i++){
+            if(company_name == company_array[i].get_name())
+                return i;
+            else{
+                return COMPANY_NOT_FOUND;
+            }
         }
     }
 }
