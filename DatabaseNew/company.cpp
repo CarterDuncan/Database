@@ -47,13 +47,7 @@ namespace coen79_lab7
         if(this == &src){
             return *this;
         }
-        while(head_ptr != NULL){
-            node* tmp = head_ptr;
-            head_ptr = head_ptr->getLink();
-            delete tmp;
-        }
-        node* tmp_tail;
-        list_copy(src.head_ptr, head_ptr, tmp_tail);
+        list_copy(src.get_head(), head_ptr, tail_ptr);
         company_name = src.company_name;
         return *this;
     }

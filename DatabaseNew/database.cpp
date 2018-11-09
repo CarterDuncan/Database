@@ -48,14 +48,11 @@ namespace coen79_lab7
         if(this == &rhs){
             return *this;
         }
-        if(aloc_slots != rhs.aloc_slots){
-            company *new_company = new company[rhs.aloc_slots];
-            delete [] company_array;
-            company_array = new_company;
-            aloc_slots = rhs.aloc_slots;
-        }
-        std::copy(rhs.company_array, rhs.company_array+rhs.used_slots, company_array);
+        delete [] company_array;
+        company_array = new company[rhs.aloc_slots];
+        std::copy(rhs.company_array, rhs.company_array+ rhs.used_slots, company_array);
         used_slots = rhs.used_slots;
+        aloc_slots = rhs.aloc_slots;
         return *this;
     }
     
@@ -70,7 +67,7 @@ namespace coen79_lab7
     void database::reserve(size_type new_capacity) {
         Debug("Reserve..." << std::endl);
 
-        if (new_capacity == aloc_slots){
+        if (aloc_slots == new_capacity){
             return; // The allocated memory is already the right size.
         }
         if (new_capacity < used_slots){
@@ -97,11 +94,14 @@ namespace coen79_lab7
             return false;
         }
         else{
-            if(used_slots >= aloc_slots){
-                reserve(aloc_slots+20);//FIX RESERVE
-            }
             company *insertion = new company(entry);
-            company_array[used_slots] = *insertion;
+            if(used_slots < aloc_slots){
+                company_array[used_slots] = *insertion;
+            }
+            else{
+                reserve(aloc_slots+1);
+                company_array[used_slots] = *insertion;
+            }
             used_slots++;
             return true;
         }
@@ -119,7 +119,6 @@ namespace coen79_lab7
         else{
             size_type pos = search_company(company);
             company_array[pos].insert(product_name, price);
-            used_slots++;
             return true;
         }
     }
@@ -190,17 +189,6 @@ namespace coen79_lab7
             std::cout << "- " << company_array[i].get_name() << std::endl;
         }
     }
-    
-    /*database::size_type database::search_company(const std::string& company_name){
-        assert(company_name.length() > 0);
-        for(size_type i = 0; i < used_slots; i++){
-            if(company_name == company_array[i].get_name())
-                return i;
-            else{
-                return COMPANY_NOT_FOUND;
-            }
-        }
-    }*/
 }
 
 #endif

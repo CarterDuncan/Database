@@ -62,19 +62,20 @@ namespace coen79_lab7
     
     void list_copy(const node *old_head, node* &new_head, node* &new_tail) {
         new_head = NULL;
-        new_tail = new_head;
-        
+        new_tail = NULL;
         const node *cur = old_head;
+        node* temp;
         while (cur != NULL) {
+            temp = new node(cur->getName(), cur->getPrice(), NULL);
             if (new_head == NULL) {
-                new_head = new node(cur->getName(), cur->getPrice());
-                new_tail = new_head;
+                new_head = temp;
+                new_tail = temp;
             }
             else {
-                new_tail->setLink(new node(cur->getName(), cur->getPrice()));
-                new_tail = new_tail->getLink();
+                new_tail->setLink(temp);
+                new_tail = temp;
             }
-            cur=cur->getLink();
+            cur = cur->getLink();
         }
     }
     
