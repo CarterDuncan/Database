@@ -2,6 +2,8 @@
 // PROVIDES: A class for a node in a linked list, and list manipulation
 // Each node represents a product of a company
 //
+// By Ethan Paek & Carter Duncan
+//
 //  COEN 79
 //  --- Behnam Dezfouli, COEN, SCU ---
 //

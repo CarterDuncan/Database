@@ -1,6 +1,6 @@
 // FILE: company.cpp
 // CLASS implemented: company (see company.h for documentation)
-
+// By Ethan Paek & Carter Duncan
 
 #include <cassert>
 #include "company.h"

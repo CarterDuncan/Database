@@ -3,6 +3,7 @@
 // its name, as well as pointers to a linked list that store
 // products information of the company
 //
+// By Ethan Paek and Carter Duncan
 //
 //  COEN 79
 //  --- Behnam Dezfouli, COEN, SCU ---

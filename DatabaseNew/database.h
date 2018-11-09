@@ -1,6 +1,7 @@
 // FILE: database.h
 // PROVIDES: A class for storing names of companies and their products.
 //
+// By Ethan Paek and Carter Duncan
 //
 //  COEN 79
 //  --- Behnam Dezfouli, COEN, SCU ---

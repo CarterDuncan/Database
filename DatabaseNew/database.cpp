@@ -1,6 +1,8 @@
 // FILE: database.cpp
 // CLASS implemented: database (see database.h for documentation)
 
+// By Ethan Paek and Carter Duncan
+
 // INVARIANT for the database ADT:
 //   1. The items in the database are stored in a dynamic array, where each entry of the array includes
 //      a company name, a pointer to the head of the linked list of products, and a

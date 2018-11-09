@@ -1,4 +1,4 @@
-
+//By Ethan Paek and Carter Duncan
 #ifndef ITEM_CPP
 #define ITEM_CPP
 
