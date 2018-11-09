@@ -68,10 +68,10 @@ namespace coen79_lab7
         Debug("Reserve..." << std::endl);
 
         if (aloc_slots == new_capacity){
-            return; // The allocated memory is already the right size.
+            return;
         }
         if (new_capacity < used_slots){
-            new_capacity = used_slots; // Canít allocate less than we are using.
+            new_capacity = used_slots;
         }
         company* new_company = new company[new_capacity];
         std::copy(company_array, company_array + used_slots, new_company);

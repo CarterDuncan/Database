@@ -30,9 +30,6 @@ namespace coen79_lab7
     
     company::company(const company &src) {
         Debug("Company copy constructor..." << std::endl);
-        /*head_ptr = NULL;
-        tail_ptr = NULL;
-        company_name = "";*/
         node* tmp_tail;
         list_copy(src.head_ptr, head_ptr, tmp_tail);
         head_ptr = src.head_ptr;
